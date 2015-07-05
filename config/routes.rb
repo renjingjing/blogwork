@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :homes
   resources :abouts
   resources :contacts
-  
+
   resources :posts do
   resources :comments, only: [:create, :destroy]
   resources :favourites, only: [:create, :destroy]
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
   delete :destroy, on: :collection
   end
+   match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
   # resources :flags
   # resources :likes
   # resources :items

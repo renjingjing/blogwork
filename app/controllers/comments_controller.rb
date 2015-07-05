@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
     @comment.post = @post
     @comment.user_id = current_user.id
       if @comment.save
-        BlogMailer.notify_post_owner(@comment).deliver_now
+        # BlogMailer.notify_post_owner(@comment).deliver_now
+        BlogMailer.delay.notify_post_owner(@comment)
         redirect_to post_path(@post)
       else
         render :show
