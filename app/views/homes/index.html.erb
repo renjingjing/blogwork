@@ -1,0 +1,21 @@
+<div class="container-fluid ">
+     <div class="container-fluid home_inline_block_l">
+        <table class="table postion:absolute">
+        <thead>
+          <tr>
+            <th class="dark_blue"><h4 ><strong>categories</strong></h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+          <tr>
+          <td class="dark_blue"><%= link_to category.title, category_path(category) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+    </div>
+    <div class="container-fluid home_inline_block_r">
+      <%=  image_tag("typingcode.jpg", class: "img_tag postion:absolute") %>
+    </div>
+</div>

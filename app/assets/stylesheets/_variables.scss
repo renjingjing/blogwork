@@ -1,0 +1,11 @@
+$brand-primary: #0000FF;
+$border-radius-base: 20px;
+$btn-border-radius-small: 20px;
+$btn-border-radius-large: 20px;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
