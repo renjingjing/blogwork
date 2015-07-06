@@ -1,0 +1,16 @@
+<div class="well" id="<%= dom_id(comment) %>">
+  <%= comment.body %> |
+  Created By: <%= comment.user.full_name %> on
+    <%= formatted_date(comment.created_at) %>
+  <% if can? :destroy, comment  %>
+    <%= link_to "Delete", post_comment_path(@post, comment), method: :delete,
+                data: {confirm: "Are you sure you want delete the comment?"},
+                remote: true %>
+  <% end %>
+  <%= render "/comments/form", comment: comment %>
+  <div class="comments">
+    <% comment.comments.each do |comment| %>
+      <%= render "/comments/comment", comment: comment %>
+    <% end %>
+  </div>
+</div>

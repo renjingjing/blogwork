@@ -2,7 +2,7 @@ class FavouritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post          =Post.find params[:post_id]
+    post          =Post.friendly.find params[:post_id]
     favourite     =current_user.favourites.new
     current_user.favouritecount ||= 0
     current_user.favouritecount = current_user.favouritecount + 1
@@ -17,7 +17,7 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    post  = Post.find params[:post_id]
+    post  = Post.friendly.find params[:post_id]
     favourite = current_user.favourites.find params[:id]
     current_user.favouritecount ||= 0
     current_user.favouritecount = current_user.favouritecount - 1

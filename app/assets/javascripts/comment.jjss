@@ -1,0 +1,52 @@
+$(document).ready(function() {
+
+  var commentList = $('#comments');
+  var commentField = $('textarea');
+
+  var renderMessage = function (msg) {
+    return '<li data-comment-id="' + msg.id + '">' + msg.body + '<i>x</i></li>';
+  };
+
+  var addMessage = function (msg) {
+    var html = renderMessage(msg);
+    commentList.prepend(html);
+  };
+
+  var loadComments = function () {
+    $.get('/post', function(data) {
+      commentList.html('');
+      for (var i=0; i < data.length; i += 1) {
+        var msg = data[i]
+        addMessage(msg);
+      }
+    })
+  };
+
+  $('form').submit(function(event) {
+    event.preventDefault();
+    var body = commentField.val();
+    commentField.val('');
+    commentField.focus();
+
+    $.post('/post', { body: body }, loadComments);
+  });
+
+  $(document).on('click', 'i', function() {
+    var listItem = $(this).parent();
+    var id = listItem.data('comment-id');
+
+    listItem.slideUp(100, function() {
+      $.ajax({
+        url: '/post/' + id,
+        method: 'DELETE',
+        complete: loadComments
+      });
+    });
+
+  });
+
+  setInterval(loadComments, 2000)
+
+  loadComments();
+
+});

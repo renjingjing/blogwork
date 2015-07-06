@@ -1,0 +1,12 @@
+<%# this will render the /app/views/comments/_comment.html.erb partial  %>
+<%# the `j` method is a Rails helper method that makes the html safe to be
+    used with Javascript by escaping the " by putting \ before it so it I have
+    something like: <div id="abc"> it will become <div id=\"abc\">.
+    It will also replace newline characters with \n %>
+$("#comments").prepend("<%= j render 'comment', comment: @comment %>");
+
+<%# We need to reset the @comment variable because at this stage it's persisted
+    to the database which means the form will be pre-populated with the comment
+    that was just created %>
+<% @comment = Post.new %>
+$("#new_comment").replaceWith("<%= j render 'form'  %>");

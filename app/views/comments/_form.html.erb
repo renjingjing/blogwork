@@ -1,15 +1,14 @@
-<% if @comment.errors.any? %>
-  <% @comment.errors.full_message.each do |msg| %>
-<ul>
-  <li><%= msg %></li>
-</ul>
-  <% end %>
-<% end %>
+<%# form_for @comment              --->  URL: /comments (comments_path)
+                                        method: POST (if @comment is not persisted)   %>
 
-<%= form_for @comment do |f|%>
-<div >
-<%= f.label :body %>
-<%= f.text_area :body %>
-</div>
-<%= f.submit "Submit comment" %>
-<% end  %>
+<%# form_for [@post, @comment] ---> URL: /post/:post_id/comments (post_comments_path)
+                                       method: POST %>
+
+<%= simple_form_for [@post, @comment], remote: true, html: {class: "form-horizontal"} do |f| %>
+  <!-- <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div> -->
+  <%= f.input :body %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

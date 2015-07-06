@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def show
-  @post=Post.find params[:id]
+  @post=Post.friendly.find params[:id]
   @favourite=@post.favourite_for(current_user)
   end
 
@@ -25,11 +25,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post=Post.find params[:id]
+    @post=Post.friendly.find params[:id]
   end
 
   def update
-    @post=Post.find params[:id]
+    @post=Post.friendly.find params[:id]
     if @post.update(post_params)
       redirect_to post_path(@post)
     else
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post=Post.find params[:id]
+    @post=Post.friendly.find params[:id]
     @post.destroy
     redirect_to posts_path
   end

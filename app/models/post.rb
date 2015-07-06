@@ -9,6 +9,10 @@ class Post < ActiveRecord::Base
   validates :title, presence: {message: "must be provided"},
                       uniqueness: true,
                       length: {minimum: 5}
+  # include adds module methods as instance methods
+  # extend adds module methods as class methods
+      extend FriendlyId
+      friendly_id :title, use: [:slugged,:history]
 
   def favourited_by?(user)
       favourites.where(user: user).present?
