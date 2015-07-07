@@ -14,4 +14,21 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require nested_form_fields
 //= require_tree .
+// # Listen on an element
+// initializeSortable -> ($assetfile)
+//   $assetfile.sortable()
+//   $assetfile.on 'fields_added.nested_form_fields', (event, param) ->
+//     console.log event.target # The added field
+//     console.log $(this)      # $el
+//
+// # Listen on document
+// $(document).on "fields_added.nested_form_fields", (event, param) ->
+//   switch param.object_class
+//     when "assetfile"
+//       console.log "Assetfile object added"
+//     else
+//       console.log "INFO: Fields were successfully added, callback not handled."

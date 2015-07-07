@@ -1,7 +1,7 @@
 <h1>Category: <%= @category.title %></h1>
-<p>There are <%= @post.length %> posts</p>
+<p>There are <%= @posts.length %> posts</p>
 <% @posts.each do |post| %>
   <div>
-    <%= link_to post.title, post_path(post) %>
+    <p class="category_id"><%= link_to post.title, post_path(post)  %></p>
   </div>
 <% end %>

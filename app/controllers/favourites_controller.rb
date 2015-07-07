@@ -19,14 +19,17 @@ class FavouritesController < ApplicationController
   def destroy
     post  = Post.friendly.find params[:post_id]
     favourite = current_user.favourites.find params[:id]
-    current_user.favouritecount ||= 0
+    #
+    # current_user.favouritecount ||= 0
     current_user.favouritecount = current_user.favouritecount - 1
     @user = User.find current_user.id
     @user.favouritecount = current_user.favouritecount
+    favourite.destroy
     if @user.save
       redirect_to post, notice: "Un-Favourited"
     else
       redirect_to post, alert: "Can't unfavourite"
     end
   end
+
 end

@@ -123,6 +123,11 @@ li a {
 	color:white;
 }
 
+.category_id {
+		color:white;
+		font-size: 20px;
+}
+
 .dark_blue {
 	background-color: #4eb1cb;
 	color:white;
@@ -205,4 +210,9 @@ width: 72%;
 	// background-image: url(bg.gif)
 	// background-position: bottom right
 	// background-repeat: no-repeat
+}
+
+.category_id > a {
+		color:white !important;
+		font-size: 20px;
 }

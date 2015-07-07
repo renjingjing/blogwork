@@ -2,6 +2,8 @@
       <%= simple_form_for @post, class: "form-horizontal" do |f| %>
       <%= f.input :title %>
       <%= f.input :body %>
+      <%= f.input :assetfile, as: :file %>
+      <!--, multiple: "true"  -->
 
     <div class="form-group">
         <%= f.label :category %>
